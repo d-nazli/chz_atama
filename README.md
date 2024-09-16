@@ -1,4 +1,5 @@
 Bu proje, personellere cihaz atama işlemlerini yönetmek amacıyla geliştirilmiş bir web uygulamasıdır. SQL Server ve .NET Core MVC teknolojilerini kullanarak cihaz ve personel kayıtlarını takip edebilir, cihazların hangi personellere atandığını kolayca görüntüleyebilirsiniz.Projede temel CRUD operasyonları Entity Framework Core kullanılarak gerçekleştirilmiştir.
+
 Proje Özeti
 Cihaz Yönetimi: Cihazların kayıt altına alınması, güncellenmesi ve silinmesi.
 Personel Yönetimi: Personel bilgileri ile birlikte departmanlarına göre düzenleme yapma imkanı.
