@@ -1,0 +1,75 @@
+﻿@model IEnumerable<chz_atama.Models.CihazAtama>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="font-size: 28px; font-weight: 600; font-family: 'Georgia', serif; color: gray;">
+    Cihaz Teslim İşlemleri
+</h1>
+
+<p>
+     <div style="text-align: right; margin-right: 170px; margin-top: 50px;">
+        <a asp-action="Create" class="btn btn-primary btn-md">Yeni İşlem</a>
+    </div>
+</p>
+<style>
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f9f9f9; /* Açık renkli satır */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: #ffffff; /* Koyu renkli satır */
+    }
+</style>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AtamaTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cihaz.CihazModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cihaz.CihazSeriNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtamaTarihi)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cihaz.CihazModel)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cihaz.CihazSeriNo)
+            </td>
+
+             <td>
+                    @Html.DisplayFor(modelItem => item.Personel.PersonelAd) 
+                    @Html.DisplayFor(modelItem => item.Personel.PersonelSoyad)
+
+            </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Personel.Departman.DepartmanAdi)
+                </td> 
+                
+            <td>
+                    
+               
+                    <a asp-action="Delete" asp-route-id="@item.AtamaId" class="btn btn-danger btn-sm">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

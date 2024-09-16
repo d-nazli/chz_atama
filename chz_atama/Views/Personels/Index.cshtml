@@ -1,0 +1,77 @@
+﻿@model IEnumerable<chz_atama.Models.Personel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="font-size: 28px; font-weight: 600; font-family: 'Georgia', serif; color: gray;">
+    Personel Listesi
+</h1>
+
+<p>
+    <div style="text-align: right; margin-right: 170px; margin-top: 50px;">
+        <a asp-action="Create" class="btn btn-primary btn-md">Yeni Personel</a>
+    </div>
+</p>
+
+<style>
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f9f9f9; 
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: #ffffff; 
+    }
+</style>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonelAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonelSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonelEposta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonelTel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departman)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonelAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonelSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonelEposta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonelTel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departman.DepartmanAdi)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PersonelId" class="btn btn-warning btn-sm">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.PersonelId" class="btn btn-info btn-sm">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PersonelId" class="btn btn-danger btn-sm">Sil</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+     </table>

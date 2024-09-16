@@ -1,0 +1,63 @@
+﻿@model IEnumerable<chz_atama.Models.Cihaz>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+   
+}
+
+<h1 style="font-size: 28px; font-weight: 600; font-family: 'Georgia', serif; color: gray;">
+    Cihaz Listesi
+</h1>
+<p>
+    <div style="text-align: right; margin-right: 170px; margin-top: 50px;">
+        <a asp-action="Create" class="btn btn-primary btn-md">Yeni Cihaz</a>
+    </div>
+
+
+
+
+</p>
+@using(@Html.BeginForm("Index","Cihazs",FormMethod.Get)){
+    <p>Model Ara:@Html.TextBox("p")
+    <input type="submit" value="Ara"></input>
+    </p>
+}
+<style>
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f9f9f9; /* Açık renkli satır */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: #ffffff; /* Koyu renkli satır */
+    }
+</style>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cihaz Adı</th>
+            <th>Model</th>
+            <th>Seri No</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CihazAdi</td>
+                <td>@item.CihazModel</td>
+                <td>@item.CihazSeriNo</td>
+                <td>@(item.IsAssigned ? "Atanmış" : "Atanmamış")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CihazId" class="btn btn-warning btn-sm">Düzenle</a> |
+
+                    <a asp-action="Delete" asp-route-id="@item.CihazId" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

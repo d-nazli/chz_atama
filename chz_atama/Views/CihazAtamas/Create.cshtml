@@ -1,0 +1,83 @@
+﻿@model chz_atama.Models.CihazAtama
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni İşlem</h1>
+<h4>Cihaz Atama</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Departman Seçimi -->
+            <div class="form-group">
+                <label>Departman Seçin</label>
+                <select id="departmansecim" class="form-control" asp-items="ViewBag.dprtmn">
+                    <option>Departman</option>
+                </select>
+            </div>
+
+            <!-- Personel Seçimi -->
+            <div class="form-group">
+                <label asp-for="PersonelId" class="control-label">Personel Seçin</label>
+                <select id="personelsecim" name="PersonelId" class="form-control">
+                    <option>Personel Seçin</option>
+                </select>
+            </div>
+
+            <!-- Cihaz Seçimi -->
+            <div class="form-group">
+                <label asp-for="CihazId" class="control-label"></label>
+                <select asp-for="CihazId" class="form-control" asp-items="ViewBag.CihazId"></select>
+            </div>
+
+            <!-- Atama Tarihi -->
+            <div class="form-group">
+                <label asp-for="AtamaTarihi" class="control-label"></label>
+                <input asp-for="AtamaTarihi" class="form-control" />
+                <span asp-validation-for="AtamaTarihi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            
+            $("#departmansecim").change(function () {
+                var departmanId = $("#departmansecim").val();
+                $("#personelsecim").empty();
+
+                $.ajax({
+                    url: '/CihazAtamas/personelgoster',
+                    dataType: 'json',
+                    data: { ID: departmanId },
+                    success: function (data) {
+                        $("#personelsecim").append('<option value="-1">Personel Seçin</option>');
+                        $.each(data, function (index, value) {
+                            $("#personelsecim").append('<option value="' + value.personelId + '">' + value.personelAd + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

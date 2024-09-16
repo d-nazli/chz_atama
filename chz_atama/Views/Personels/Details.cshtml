@@ -1,0 +1,84 @@
+﻿@model chz_atama.Models.Personel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Personel Detayları</h1>
+
+<div>
+    <h4>Personel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonelAd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonelAd)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonelSoyad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonelSoyad)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonelEposta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonelEposta)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonelTel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonelTel)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Departman)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Departman.DepartmanAdi)
+        </dd>
+    </dl>
+
+    <h4>Personelin Cihazları</h4>
+    <hr />
+    @if (Model.CihazAtamalar != null && Model.CihazAtamalar.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cihaz Seri No</th>
+                    <th>Model</th>
+                    <th>Atama Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var atama in Model.CihazAtamalar)
+                {
+                    <tr>
+                        <td>@atama.Cihaz.CihazSeriNo</td>
+                        <td>@atama.Cihaz.CihazModel</td>
+                        <td>@atama.AtamaTarihi</td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Bu personelin kullandığı cihaz bulunmamaktadır.</p>
+    }
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PersonelId">Düzenle</a> |
+    <a asp-action="Index"> Geri Dön</a>
+</div>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var departmanPersonelSayilari = (IEnumerable<dynamic>)ViewBag.DepartmanPersonelSayilari;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cihaz Dağılım Grafiği</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="myPieChart" width="300" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Departmanlar ve Personel Sayıları</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="departmanPersonelChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+   
+    var ctxPie = document.getElementById("myPieChart").getContext('2d');
+    var myPieChart = new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+            labels: ["Cihazlar", "Atanan Cihazlar"],
+            datasets: [{
+                data: [@ViewBag.ToplamCihaz, @ViewBag.AtananCihaz],
+                backgroundColor: ['#1cc88a', '#36b9cc'],
+            }],
+        },
+    });
+
+    
+    var ctxBar = document.getElementById("departmanPersonelChart").getContext('2d');
+    var departmanPersonelChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(departmanPersonelSayilari.Select(d => d.DepartmanAdi))),
+            datasets: [{
+                label: 'Personel Sayısı',
+                data: @Html.Raw(Json.Serialize(departmanPersonelSayilari.Select(d => d.PersonelSayisi))),
+                backgroundColor: '#4e73df',
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true, 
+                    ticks: {
+                        stepSize: 5, 
+                        callback: function (value) {
+                            
+                            return value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+</script>
