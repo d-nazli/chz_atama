@@ -8,6 +8,9 @@ Cihaz Durumları: Cihazların atanmış veya atanmamış olduğunun sorgulanmas�
 
 Kullanılan Teknolojiler
 Back-end: ASP.NET Core MVC
+ORM: Entity Framework Core
 Veritabanı: SQL Server
 Ön Yüz: Razor View
 Diyagramlar & Grafikler: Projede personel ve cihaz dağılımını görselleştirmek için grafikler kullanılmıştır.
+
+Projede temel CRUD operasyonları Entity Framework Core kullanılarak gerçekleştirilmiştir:
