@@ -1,23 +1,28 @@
-# Device Management System
+Device Management System
+This project is a web application developed to manage device assignments to personnel. Using SQL Server and .NET Core MVC technologies, you can track device and personnel records and easily view which personnel are assigned to which devices. Basic CRUD operations in the project are implemented using Entity Framework Core.
 
+Project Summary
+Device Management: Registering, updating, and deleting device records.
 
-Bu proje, personellere cihaz atama işlemlerini yönetmek amacıyla geliştirilmiş bir web uygulamasıdır. SQL Server ve .NET Core MVC teknolojilerini kullanarak cihaz ve personel kayıtlarını takip edebilir, cihazların hangi personellere atandığını kolayca görüntüleyebilirsiniz.Projede temel CRUD operasyonları Entity Framework Core kullanılarak gerçekleştirilmiştir.
+Personnel Management: Managing personnel information and organizing them by departments.
 
-## Proje Özeti
+Device Assignment: Assigning available devices to personnel and obtaining information about assigned devices.
 
-Cihaz Yönetimi: Cihazların kayıt altına alınması, güncellenmesi ve silinmesi.<br>
-Personel Yönetimi: Personel bilgileri ile birlikte departmanlarına göre düzenleme yapma imkanı.<br>
-Cihaz Atama: Cihazların uygun olan personellere atanması ve atanan cihazların durumu hakkında bilgi alma.<br>
-Cihaz Durumları: Cihazların atanmış veya atanmamış olduğunun sorgulanması.
+Device Status: Checking whether devices are assigned or unassigned.
 
-## Kullanılan Teknolojiler
+Technologies Used
+Back-end: ASP.NET Core MVC
 
-Back-end: ASP.NET Core MVC<br>
-ORM: Entity Framework Core<br>
-Veritabanı: SQL Server<br>
-Ön Yüz: Razor View<br>
-Diyagramlar & Grafikler: Projede personel ve cihaz dağılımını görselleştirmek için grafikler kullanılmıştır.<br><br>
+ORM: Entity Framework Core
 
-Bu proje, SQL Server .bacpac dosyası ile çalışmaktadır. Projenin düzgün çalışması için veritabanı yedeğini SQL Server'a geri yüklemeniz gerekmektedir.<br>
-Veritabanı başarıyla yüklendikten sonra, appsettings.json dosyasındaki ConnectionStrings bölümünü veritabanı bağlantı bilgilerinizle güncelleyin.<br>
-Bu projede sadece admin yetkisine sahip kullanıcılar sisteme giriş yapabilir.Veritabanında önceden oluşturulmuş bir admin kullanıcısı bulunmaktadır. İlk giriş için bu bilgileri kullanabilirsiniz.
+Database: SQL Server
+
+Front-end: Razor View
+
+Diagrams & Charts: Charts are used to visualize the distribution of personnel and devices.
+
+This project works with a SQL Server .bacpac file. To run the project properly, you need to restore the database backup into SQL Server.
+Once the database is successfully restored, update the ConnectionStrings section in the appsettings.json file with your database connection information.
+
+Only users with admin privileges can log in to the system. A pre-created admin user is available in the database. You can use these credentials for the first login.
+
